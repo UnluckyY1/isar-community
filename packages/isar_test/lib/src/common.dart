@@ -9,7 +9,6 @@ import 'package:isar_test/src/init_native.dart'
     if (dart.library.html) 'package:isar_test/src/init_web.dart';
 import 'package:isar_test/src/sync_async_helper.dart';
 import 'package:meta/meta.dart';
-import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
@@ -125,11 +124,6 @@ Future<Isar> openTempIsar(
       testTempPath = tempDir.path;
     }
     await Directory(testTempPath!).create(recursive: true);
-    try {
-      await File('/tmp/isar_diag.txt').writeAsString(
-        'path=$testTempPath\nexists=${await Directory(testTempPath!).exists()}\n',
-      );
-    } catch (_) {}
   }
 
   final isar = await tOpen(
